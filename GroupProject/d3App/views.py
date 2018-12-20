@@ -7,12 +7,12 @@ from .models import *
 from django.http import JsonResponse
 
 
-def index(request):
-    return render(request, 'index.html')
-
-
-def graph(request):
-    return render(request, 'graph/graph.html')
+def HomeCtrl(request):
+    sp = SpainPortugal.objects.all()
+    np = NubePalabras.objects.all()
+    f = FollowData.objects.all()
+    hc = HashCount.objects.all()
+    return render(request, 'home.html', {'sp': sp, 'np': np, 'f': f, 'hc': hc, 'home': True})
 
 
 def SpainPortugalCtrl(request):
@@ -20,11 +20,11 @@ def SpainPortugalCtrl(request):
     return JsonResponse(data, safe=False)
 
 
-def PaginaNube(request):
-    return render(request, 'nube.html')
+def NubeCtrl(request):
+    return render(request, 'nube_palabras.html')
 
 
-def NubePalabrasCtrl(request):
+def NubeDataCtrl(request):
     data = list(NubePalabras.objects.values())
     return JsonResponse(data, safe=False)
 

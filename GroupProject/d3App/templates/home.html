@@ -1,0 +1,217 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block body %}
+    <div class="pcoded-content">
+        <!-- [ breadcrumb ] start -->
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-8">
+                        <div class="page-header-title">
+                            <h4 class="m-b-10">Dashboard</h4>
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="home.html">
+                                    <i class="feather icon-home"></i>
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="#!">Datasets</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [ breadcrumb ] end -->
+        <div class="pcoded-inner-content">
+            <!-- Main-body start -->
+            <div class="main-body">
+                <div class="page-wrapper">
+                    <!-- Page-body start -->
+                    <div class="page-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <!-- Default ordering table start -->
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5>Usuarios de España y portugal</h5>
+                                        <span>El dataset contiene información de los nombres de usuarios con el número de followers y followings</span>
+                                    </div>
+                                    <div class="card-block">
+                                        <div class="dt-responsive table-responsive">
+                                            <table id="order-table" class="table table-striped table-bordered nowrap">
+                                                <thead>
+                                                <tr>
+                                                    <th>Username</th>
+                                                    <th>Followers</th>
+                                                    <th>Following</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for e in sp %}
+                                                    <tr>
+                                                        <td>{{ e.username }}</td>
+                                                        <td>{{ e.followers }}</td>
+                                                        <td>{{ e.following }}</td>
+                                                    </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                                <tfoot>
+                                                <tr>
+                                                    <th>Username</th>
+                                                    <th>Followers</th>
+                                                    <th>Following</th>
+                                                </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Default ordering table end -->
+                            <!-- Default ordering table start -->
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5>Repetición de palabras</h5>
+                                        <span>Dataset con la repetición de palabras más usadas</span>
+                                    </div>
+                                    <div class="card-block">
+                                        <div class="dt-responsive table-responsive">
+                                            <table id="order-table1" class="table table-striped table-bordered nowrap">
+                                                <thead>
+                                                <tr>
+                                                    <th>Palabra</th>
+                                                    <th>Repeticiones</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for e in np %}
+                                                    <tr>
+                                                        <td>{{ e.keyword }}</td>
+                                                        <td>{{ e.repeats }}</td>
+                                                    </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                                <tfoot>
+                                                <tr>
+                                                    <th>Palabra</th>
+                                                    <th>Repeticiones</th>
+                                                </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Default ordering table end -->
+                            <!-- Default ordering table start -->
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5>Dataset con ratio de Followers/Following</h5>
+                                        <span>El dataset contiene información de los nombres de usuarios con el número de followers y followings y su ratio</span>
+                                    </div>
+                                    <div class="card-block">
+                                        <div class="dt-responsive table-responsive">
+                                            <table id="order-table2" class="table table-striped table-bordered nowrap">
+                                                <thead>
+                                                <tr>
+                                                    <th>Username</th>
+                                                    <th>Followers</th>
+                                                    <th>Following</th>
+                                                    <th>Ratio</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for e in f %}
+                                                    <tr>
+                                                        <td>{{ e.nickname }}</td>
+                                                        <td>{{ e.followers }}</td>
+                                                        <td>{{ e.following }}</td>
+                                                        <td>{{ e.ratio|floatformat:2 }}</td>
+                                                    </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                                <tfoot>
+                                                <tr>
+                                                    <th>Username</th>
+                                                    <th>Followers</th>
+                                                    <th>Following</th>
+                                                    <th>Ratio</th>
+                                                </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Default ordering table end -->
+                            <!-- Default ordering table start -->
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5>Usuarios de España y portugal</h5>
+                                        <span>El dataset contiene información de los nombres de usuarios con el número de followers y followings</span>
+                                    </div>
+                                    <div class="card-block">
+                                        <div class="dt-responsive table-responsive">
+                                            <table id="order-table3" class="table table-striped table-bordered nowrap">
+                                                <thead>
+                                                <tr>
+                                                    <th>Username</th>
+                                                    <th>Followers</th>
+                                                    <th>Following</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for e in sp %}
+                                                    <tr>
+                                                        <td>{{ e.username }}</td>
+                                                        <td>{{ e.followers }}</td>
+                                                        <td>{{ e.following }}</td>
+                                                    </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                                <tfoot>
+                                                <tr>
+                                                    <th>Username</th>
+                                                    <th>Followers</th>
+                                                    <th>Following</th>
+                                                </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Default ordering table end -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Page-body end -->
+                </div>
+            </div>
+            <!-- Main-body end -->
+            <div id="styleSelector">
+
+            </div>
+        </div>
+    </div>
+{% endblock body %}
+
+{% block scripts %}
+    <!-- data-table js -->
+    <script src="{% static 'files/bower_components/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'files/bower_components/datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
+    {#    <script src="{% static 'files/assets/pages/data-table/js/jszip.min.js' %}"></script>#}
+    <script src="{% static 'files/assets/pages/data-table/js/pdfmake.min.js' %}"></script>
+    <script src="{% static 'files/assets/pages/data-table/js/vfs_fonts.js' %}"></script>
+    <script src="{% static 'files/bower_components/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
+    <script src="{% static 'files/bower_components/datatables.net-buttons/js/buttons.html5.min.js' %}"></script>
+    <script src="{% static 'files/bower_components/datatables.net-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'files/bower_components/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
+    <script src="{% static 'files/bower_components/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js' %}"></script>
+    <!-- Custom js -->
+    <script src="{% static 'files/assets/pages/data-table/js/data-table-custom.js' %}"></script>
+    <script src="{% static 'files/assets/js/pcoded.min.js' %}"></script>
+    <script src="{% static 'files/assets/js/vertical/vertical-layout.min.js' %}"></script>
+    <script src="{% static 'files/assets/js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'files/assets/js/script.js' %}"></script>
+{% endblock scripts %}

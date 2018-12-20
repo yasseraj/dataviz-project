@@ -35,3 +35,14 @@ class FollowData(models.Model):
 
     def __str__(self):
         return 'nickname: %s, followers: %d, following: %d, Followers/Following ratio: %.4f: ' % (self.nickname, self.followers, self.following, self.ratio)
+
+
+class HashCount(models.Model):
+    hash = models.CharField(max_length=255, blank=False, null=False)
+    repeats = models.IntegerField(null=False, blank=False, default=0)
+
+    class Meta:
+        ordering = ('-repeats',)
+
+    def __str__(self):
+        return 'Keyword: %s, repeats: %d' % (self.hash, self.repeats)

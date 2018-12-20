@@ -15,7 +15,7 @@
     </style>
     <script src="{% static 'js/d3.layout.cloud.js' %}"></script>
 {% endblock css_or_js %}
-{% block body %}
+{% block scripts %}
     <script>
         var margin = {top: 10, right: 10, bottom: 70, left: 100},
             width = 600 - margin.left - margin.right,
@@ -61,4 +61,4 @@
         });
 
     </script>
-{% endblock body %}
+{% endblock scripts %}
