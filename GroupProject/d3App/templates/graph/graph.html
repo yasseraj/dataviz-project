@@ -1,6 +1,8 @@
-<html>
-<meta charset="utf-8">
-<style>
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block css_or_js %}
+    <style>
 
     body {
         font: 10px sans-serif;
@@ -24,8 +26,8 @@
     }
 
 </style>
-<body>
-<script src="http://d3js.org/d3.v3.js"></script>
+{% endblock css_or_js %}
+{% block body %}
 <script>
 
     var margin = {top: 20, right: 20, bottom: 30, left: 50},
@@ -86,5 +88,5 @@
     });
 
 </script>
-</body>
-</html>
+{% endblock body %}
+
