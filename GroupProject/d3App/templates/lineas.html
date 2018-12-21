@@ -174,7 +174,7 @@
                                             <div class="card">
                                                 <div class="card-header borderless">
                                                     <h5>Diagrama de líneas con el total de tweets por día</h5>
-                                                    <span class="text-muted"></span>
+                                                    <span class="text-muted">0: Sábado, 1: Lunes, 2: Martes, 3: Miércoles, 4: Jueves, 6: Viernes</span>
                                                     <div class="card-header-right">
                                                         <ul class="list-unstyled card-option">
                                                             <li class="first-opt"><i class="feather icon-chevron-left open-card-option"></i></li>
@@ -257,6 +257,13 @@
         modData.push(item);
         var chart1 = c3.generate({
             bindto: '#chart1',
+            axis: {
+                x: {
+                    tick: {
+                        values: ['', 'D', 'L', 'Mar', 'Mis', 'J', 'V']
+                    }
+                }
+            },
             size: {
                 height: 400,
                 width: 900
