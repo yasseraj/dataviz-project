@@ -526,6 +526,11 @@ $(document).ready(function() {
         //     [3, "desc"]
         // ]
     });
+    $('#order-table5').DataTable({
+        // "order": [
+        //     [3, "desc"]
+        // ]
+    });
     $('#multi-colum-dt').DataTable({
         columnDefs: [{
             targets: [0],

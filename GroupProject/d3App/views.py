@@ -13,8 +13,9 @@ def HomeCtrl(request):
     f = FollowData.objects.all()
     hc = HashCount.objects.all()
     th = TimeTweets.objects.all()
+    dt = DayTweets.objects.all()
     #return render(request, 'home.html', {'sp': sp, 'np': np, 'f': f, 'hc': hc, 'th': th, 'home': True})
-    return render(request, 'home.html', {'np': np, 'f': f, 'hc': hc, 'th': th, 'home': True})
+    return render(request, 'home.html', {'np': np, 'f': f, 'hc': hc, 'th': th, 'dt': dt, 'home': True})
 
 
 def SpainPortugalCtrl(request):
@@ -70,5 +71,12 @@ def LineasDataCtrl(request):
     data = []
     for d in data_qs:
         data.append(d.repeats)
-    print(data)
+    return JsonResponse({'tweets': data}, safe=False)
+
+
+def LineasDataCtrl1(request):
+    data_qs = DayTweets.objects.all()
+    data = []
+    for d in data_qs:
+        data.append(d.num)
     return JsonResponse({'tweets': data}, safe=False)

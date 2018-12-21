@@ -57,3 +57,15 @@ class TimeTweets(models.Model):
 
     def __str__(self):
         return 'time: %s, repeats: %d' % (self.time, self.repeats)
+
+
+class DayTweets(models.Model):
+    num = models.IntegerField(null=False, blank=False, default=0)
+    day = models.CharField(max_length=255,blank=False, null=False)
+    repeats = models.IntegerField(null=False, blank=False, default=0)
+
+    class Meta:
+        ordering = ('repeats',)
+
+    def __str__(self):
+        return 'Day: %s, repeats: %d' % (self.day, self.num)

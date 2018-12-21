@@ -17,4 +17,5 @@ urlpatterns = [
     url(r'^data_burbuja', BurbujaDataCtrl, name='burbuja_data'),
     url(r'^lineas', LineasCtrl, name='lineas'),
     url(r'^data_lineas', LineasDataCtrl, name='lineas_data'),
+    url(r'^1data_lineas', LineasDataCtrl1, name='1lineas_data'),
 ]
