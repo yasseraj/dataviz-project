@@ -506,11 +506,6 @@ $(document).ready(function() {
     $('#simpletable').DataTable();
     },350);
 
-    $('#order-table').DataTable({
-        // "order": [
-        //     [3, "desc"]
-        // ]
-    });
     $('#order-table1').DataTable({
         // "order": [
         //     [3, "desc"]
@@ -526,7 +521,11 @@ $(document).ready(function() {
         //     [3, "desc"]
         // ]
     });
-
+    $('#order-table4').DataTable({
+        // "order": [
+        //     [3, "desc"]
+        // ]
+    });
     $('#multi-colum-dt').DataTable({
         columnDefs: [{
             targets: [0],

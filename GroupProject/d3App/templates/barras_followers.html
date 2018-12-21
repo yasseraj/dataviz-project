@@ -40,7 +40,17 @@
             display: block;
             border-radius: 0;
         }
+        .axis {
+            font: 10px sans-serif;
+        }
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: #000;
+            shape-rendering: crispEdges;
+        }
     </style>
+    <script src="{% static 'js/d3.layout.cloud.js' %}"></script>
 </head>
 
 <body>
@@ -71,27 +81,27 @@
                                 </a>
                                 <ul class="pcoded-submenu">
                                     <li class="">
-                                        <a href="index.html" class="waves-effect waves-dark">
+                                        <a href="{% url 'home' %}" class="waves-effect waves-dark">
                                             <span class="pcoded-mtext">Datasets</span>
                                         </a>
                                     </li>
-                                    <li class="">
-                                        <a href="index.html" class="waves-effect waves-dark">
+                                    <li class="active">
+                                        <a href="{% url 'following_er' %}" class="waves-effect waves-dark">
                                             <span class="pcoded-mtext">Barras</span>
                                         </a>
                                     </li>
                                     <li class="">
-                                        <a href="index.html" class="waves-effect waves-dark">
+                                        <a href="{% url 'lineas' %}" class="waves-effect waves-dark">
                                             <span class="pcoded-mtext">Líneas</span>
                                         </a>
                                     </li>
-                                    <li class="active">
-                                        <a href="index.html" class="waves-effect waves-dark">
+                                    <li class="">
+                                        <a href="{% url 'pagina_nube_palabras' %}" class="waves-effect waves-dark">
                                             <span class="pcoded-mtext">Nube de palabras</span>
                                         </a>
                                     </li>
                                     <li class="">
-                                        <a href="index.html" class="waves-effect waves-dark">
+                                        <a href="{% url 'burbuja' %}" class="waves-effect waves-dark">
                                             <span class="pcoded-mtext">Burbujas</span>
                                         </a>
                                     </li>
@@ -112,12 +122,12 @@
                                         </div>
                                         <ul class="breadcrumb">
                                             <li class="breadcrumb-item">
-                                                <a href="index.html">
+                                                <a href="{% url 'home' %}">
                                                     <i class="feather icon-home"></i>
                                                 </a>
                                             </li>
                                             <li class="breadcrumb-item">
-                                                <a href="#!">Nube de Palabras</a>
+                                                <a href="#!">Gráfica de barras</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -136,19 +146,52 @@
                                             <div class="col-lg-12 col-md-12">
                                                 <div class="card">
                                                     <div class="card-header borderless">
-                                                        <h5>Nube de palabras</h5>
+                                                        <h5>Diagrama de barras de los usuarios con más followers</h5>
                                                         <span class="text-muted"></span>
                                                         <div class="card-header-right">
                                                             <ul class="list-unstyled card-option">
                                                                 <li class="first-opt"><i class="feather icon-chevron-left open-card-option"></i></li>
                                                                 <li><i class="feather icon-maximize full-card"></i></li>
                                                                 <li><i class="feather icon-minus minimize-card"></i></li>
-                                                                <li><i class="feather icon-refresh-cw reload-card"></i></li>
                                                                 <li><i class="feather icon-chevron-left open-card-option"></i></li>
                                                             </ul>
                                                         </div>
                                                     </div>
-                                                    <div class="card-block">
+                                                    <div id="grafica" class="card-block">
+
+                                                    </div>
+                                                </div>
+                                                <div class="card">
+                                                    <div class="card-header borderless">
+                                                        <h5>Diagrama de barras de los usuarios con más followings</h5>
+                                                        <span class="text-muted"></span>
+                                                        <div class="card-header-right">
+                                                            <ul class="list-unstyled card-option">
+                                                                <li class="first-opt"><i class="feather icon-chevron-left open-card-option"></i></li>
+                                                                <li><i class="feather icon-maximize full-card"></i></li>
+                                                                <li><i class="feather icon-minus minimize-card"></i></li>
+                                                                <li><i class="feather icon-chevron-left open-card-option"></i></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div id="grafica1" class="card-block">
+
+                                                    </div>
+                                                </div>
+                                                <div class="card">
+                                                    <div class="card-header borderless">
+                                                        <h5>Diagrama de barras de los usuarios según ratio Followers/Following</h5>
+                                                        <span class="text-muted"></span>
+                                                        <div class="card-header-right">
+                                                            <ul class="list-unstyled card-option">
+                                                                <li class="first-opt"><i class="feather icon-chevron-left open-card-option"></i></li>
+                                                                <li><i class="feather icon-maximize full-card"></i></li>
+                                                                <li><i class="feather icon-minus minimize-card"></i></li>
+                                                                <li><i class="feather icon-chevron-left open-card-option"></i></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div id="grafica2" class="card-block">
 
                                                     </div>
                                                 </div>
@@ -166,54 +209,7 @@
             </div>
         </div>
     </div>
-    <!-- Warning Section Starts -->
-    <!-- Older IE warning message -->
-    <!--[if lt IE 10]>
-    <div class="ie-warning">
-        <h1>Warning!!</h1>
-        <p>You are using an outdated version of Internet Explorer, please upgrade
-            <br/>to any of the following web browsers to access this website.
-        </p>
-        <div class="iew-container">
-            <ul class="iew-download">
-                <li>
-                    <a href="http://www.google.com/chrome/">
-                        <img src="../files/assets/images/browser/chrome.png" alt="Chrome">
-                        <div>Chrome</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://www.mozilla.org/en-US/firefox/new/">
-                        <img src="../files/assets/images/browser/firefox.png" alt="Firefox">
-                        <div>Firefox</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="http://www.opera.com">
-                        <img src="../files/assets/images/browser/opera.png" alt="Opera">
-                        <div>Opera</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://www.apple.com/safari/">
-                        <img src="../files/assets/images/browser/safari.png" alt="Safari">
-                        <div>Safari</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
-                        <img src="../files/assets/images/browser/ie.png" alt="">
-                        <div>IE (9 & above)</div>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <p>Sorry for the inconvenience!</p>
-    </div>
-<![endif]-->
-    <!-- Warning Section Ends -->
-    <!-- Required Jquery -->
-    <!-- Required Jquery -->
+
     <script type="text/javascript" src="{% static 'files/bower_components/jquery/js/jquery.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'files/bower_components/jquery-ui/js/jquery-ui.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'files/bower_components/popper.js/js/popper.min.js' %}"></script>
@@ -236,6 +232,130 @@
     <script src="{% static 'files/assets/js/vertical/vertical-layout.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'files/assets/pages/dashboard/custom-dashboard.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'files/assets/js/script.min.js' %}"></script>
+    <script>
+        var margin = {top: 10, right: 10, bottom: 70, left: 100},
+            width = 900 - margin.left - margin.right,
+            height = 400 - margin.top - margin.bottom;
+
+        var x = d3.scale.ordinal().rangeRoundBands([0, width], .05);
+        var y = d3.scale.linear().range([height, 0]);
+
+        var xAxis = d3.svg.axis().scale(x).orient("bottom").ticks(24);
+        var yAxis = d3.svg.axis().scale(y).orient("left").ticks(10);
+
+        var svg = d3.select("#grafica").append("svg").attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g").attr("transform","translate(" + margin.left + "," + margin.top + ")");
+
+        d3.json("{% url "following_er_data" %}", function(error, data) {
+            data = data.slice(0,15);
+
+            x.domain(data.map(function(d) { return d.nickname; }));
+            y.domain([0, d3.max(data, function(d) { return d.followers; })]);
+
+            svg.append("g").attr("class", "x axis")
+                .attr("transform", "translate(0," + height + ")")
+                .call(xAxis).selectAll("text")
+                .style("text-anchor", "end")
+                .attr("dx", "-.8em").attr("dy", "-.55em")
+                .attr("transform", "rotate(-30)" );
+
+            svg.append("g")
+                .attr("class", "y axis")
+                .call(yAxis).append("text")
+                .attr("transform", "rotate(-90)")
+                .attr("y", 6).attr("dy", ".71em")
+                .style("text-anchor", "end");
+
+            svg.selectAll("bar")
+                .data(data).enter().append("rect")
+                .style("fill", "steelblue")
+                .attr("x", function(d) { return x(d.nickname); })
+                .attr("width", x.rangeBand())
+                .attr("y", function(d) { return y(d.followers); })
+                .attr("height", function(d) { return height - y(d.followers); });
+        });
+    </script>
+    <script>
+        var x1 = d3.scale.ordinal().rangeRoundBands([0, width], .05);
+        var y1 = d3.scale.linear().range([height, 0]);
+
+        var xAxis1 = d3.svg.axis().scale(x1).orient("bottom").ticks(24);
+        var yAxis1 = d3.svg.axis().scale(y1).orient("left").ticks(10);
+
+        var svg1 = d3.select("#grafica1").append("svg").attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g").attr("transform","translate(" + margin.left + "," + margin.top + ")");
+
+        d3.json("{% url "following_er_data1" %}", function(error, data) {
+            data = data.slice(0,15);
+
+            x1.domain(data.map(function(d) { return d.nickname; }));
+            y1.domain([0, d3.max(data, function(d) { return d.following; })]);
+
+            svg1.append("g").attr("class", "x axis")
+                .attr("transform", "translate(0," + height + ")")
+                .call(xAxis1).selectAll("text")
+                .style("text-anchor", "end")
+                .attr("dx", "-.8em").attr("dy", "-.55em")
+                .attr("transform", "rotate(-30)" );
+
+            svg1.append("g")
+                .attr("class", "y axis")
+                .call(yAxis1).append("text")
+                .attr("transform", "rotate(-90)")
+                .attr("y", 6).attr("dy", ".71em")
+                .style("text-anchor", "end");
+
+            svg1.selectAll("bar")
+                .data(data).enter().append("rect")
+                .style("fill", "steelblue")
+                .attr("x", function(d) { return x1(d.nickname); })
+                .attr("width", x1.rangeBand())
+                .attr("y", function(d) { return y1(d.following); })
+                .attr("height", function(d) { return height - y1(d.following); });
+        });
+    </script>
+    <script>
+        var x2 = d3.scale.ordinal().rangeRoundBands([0, width], .05);
+        var y2 = d3.scale.linear().range([height, 0]);
+
+        var xAxis2 = d3.svg.axis().scale(x2).orient("bottom").ticks(24);
+        var yAxis2 = d3.svg.axis().scale(y2).orient("left").ticks(10);
+
+        var svg2 = d3.select("#grafica2").append("svg").attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g").attr("transform","translate(" + margin.left + "," + margin.top + ")");
+
+        d3.json("{% url "following_er_data2" %}", function(error, data) {
+            data = data.slice(0,15);
+
+            x2.domain(data.map(function(d) { return d.nickname; }));
+            y2.domain([0, d3.max(data, function(d) { return d.ratio; })]);
+
+            svg2.append("g").attr("class", "x axis")
+                .attr("transform", "translate(0," + height + ")")
+                .call(xAxis2).selectAll("text")
+                .style("text-anchor", "end")
+                .attr("dx", "-.8em").attr("dy", "-.55em")
+                .attr("transform", "rotate(-30)" );
+
+            svg2.append("g")
+                .attr("class", "y axis")
+                .call(yAxis2).append("text")
+                .attr("transform", "rotate(-90)")
+                .attr("y", 6).attr("dy", ".71em")
+                .style("text-anchor", "end");
+
+            svg2.selectAll("bar")
+                .data(data).enter().append("rect")
+                .style("fill", "steelblue")
+                .attr("x", function(d) { return x2(d.nickname); })
+                .attr("width", x2.rangeBand())
+                .attr("y", function(d) { return y2(d.ratio); })
+                .attr("height", function(d) { return height - y2(d.ratio); });
+        });
+    </script>
 </body>
 
 </html>

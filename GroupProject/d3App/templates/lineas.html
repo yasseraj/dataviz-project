@@ -13,8 +13,8 @@
     <!-- Meta -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <script src="https://d3js.org/d3.v4.min.js"></script>
-    <script src="http://d3js.org/d3.v3.min.js"></script>
+    {% comment %}    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>{% endcomment %}
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="description" content="Gradient Able Bootstrap admin template made using Bootstrap 4 and it has huge amount of ready made feature, UI components, pages which completely fulfills any dashboard needs." />
     <meta name="keywords" content="flat ui, admin Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app">
@@ -40,23 +40,43 @@
             display: block;
             border-radius: 0;
         }
+        path {
+            stroke: steelblue;
+            stroke-width: 2;
+            fill: none;
+        }
+
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: grey;
+            stroke-width: 1;
+            shape-rendering: crispEdges;
+        }
     </style>
+{#    <script src="https://d3js.org/d3.v5.min.js"></script>#}
+{#    <link href="{% static 'c3-0.6.11/c3.css' %}" rel="stylesheet">#}
+{#    <script src="{% static 'c3-0.6.11/c3.min.js' %}"></script>#}
+
+    <script data-require="d3@3.4.6" data-semver="3.4.6" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.6/d3.min.js"></script>
+    <link data-require="c3.js@0.1.29" data-semver="0.1.29" rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/c3/0.1.29/c3.css" />
+    <script data-require="c3.js@0.1.29" data-semver="0.1.29" src="//cdnjs.cloudflare.com/ajax/libs/c3/0.1.29/c3.js"></script>
 </head>
 
 <body>
-    <!-- [ Pre-loader ] start -->
-    <div class="loader-bg">
-        <div class="loader-bar"></div>
-    </div>
-    <!-- [ Pre-loader ] end -->
-    <div id="pcoded" class="pcoded">
-        <div class="pcoded-overlay-box"></div>
-        <div class="pcoded-container navbar-wrapper">
+<!-- [ Pre-loader ] start -->
+<div class="loader-bg">
+    <div class="loader-bar"></div>
+</div>
+<!-- [ Pre-loader ] end -->
+<div id="pcoded" class="pcoded">
+    <div class="pcoded-overlay-box"></div>
+    <div class="pcoded-container navbar-wrapper">
 
-            <div class="pcoded-main-container">
-                <div class="pcoded-wrapper">
-                    <!-- [ navigation menu ] start -->
-                     <nav class="pcoded-navbar">
+        <div class="pcoded-main-container">
+            <div class="pcoded-wrapper">
+                <!-- [ navigation menu ] start -->
+                <nav class="pcoded-navbar">
                     <div class="pcoded-inner-navbar main-menu">
                         <div class="">
                             <div class="main-menu-header">
@@ -71,27 +91,27 @@
                                 </a>
                                 <ul class="pcoded-submenu">
                                     <li class="">
-                                        <a href="index.html" class="waves-effect waves-dark">
+                                        <a href="{% url 'home' %}" class="waves-effect waves-dark">
                                             <span class="pcoded-mtext">Datasets</span>
                                         </a>
                                     </li>
                                     <li class="">
-                                        <a href="index.html" class="waves-effect waves-dark">
+                                        <a href="{% url 'following_er' %}" class="waves-effect waves-dark">
                                             <span class="pcoded-mtext">Barras</span>
                                         </a>
                                     </li>
-                                    <li class="">
-                                        <a href="index.html" class="waves-effect waves-dark">
+                                    <li class="active">
+                                        <a href="{% url 'home' %}" class="waves-effect waves-dark">
                                             <span class="pcoded-mtext">Líneas</span>
                                         </a>
                                     </li>
-                                    <li class="active">
-                                        <a href="index.html" class="waves-effect waves-dark">
+                                    <li class="">
+                                        <a href="{% url 'pagina_nube_palabras' %}" class="waves-effect waves-dark">
                                             <span class="pcoded-mtext">Nube de palabras</span>
                                         </a>
                                     </li>
                                     <li class="">
-                                        <a href="index.html" class="waves-effect waves-dark">
+                                        <a href="{% url 'burbuja' %}" class="waves-effect waves-dark">
                                             <span class="pcoded-mtext">Burbujas</span>
                                         </a>
                                     </li>
@@ -100,64 +120,62 @@
                         </ul>
                     </div>
                 </nav>
-                    <!-- [ navigation menu ] end -->
-                    <div class="pcoded-content">
-                        <!-- [ breadcrumb ] start -->
-                        <div class="page-header">
-                            <div class="page-block">
-                                <div class="row align-items-center">
-                                    <div class="col-md-8">
-                                        <div class="page-header-title">
-                                            <h4 class="m-b-10">Dashboard</h4>
-                                        </div>
-                                        <ul class="breadcrumb">
-                                            <li class="breadcrumb-item">
-                                                <a href="index.html">
-                                                    <i class="feather icon-home"></i>
-                                                </a>
-                                            </li>
-                                            <li class="breadcrumb-item">
-                                                <a href="#!">Nube de Palabras</a>
-                                            </li>
-                                        </ul>
+                <!-- [ navigation menu ] end -->
+                <div class="pcoded-content">
+                    <!-- [ breadcrumb ] start -->
+                    <div class="page-header">
+                        <div class="page-block">
+                            <div class="row align-items-center">
+                                <div class="col-md-8">
+                                    <div class="page-header-title">
+                                        <h4 class="m-b-10">Dashboard</h4>
                                     </div>
+                                    <ul class="breadcrumb">
+                                        <li class="breadcrumb-item">
+                                            <a href="{% url 'home' %}">
+                                                <i class="feather icon-home"></i>
+                                            </a>
+                                        </li>
+                                        <li class="breadcrumb-item">
+                                            <a href="#!">Diagrama de líneas</a>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
-                        <!-- [ breadcrumb ] end -->
-                        <div class="pcoded-inner-content">
-                            <div class="main-body">
-                                <div class="page-wrapper">
-                                    <div class="page-body">
-                                        <!-- [ page content ] start -->
-                                        <div class="row">
+                    </div>
+                    <!-- [ breadcrumb ] end -->
+                    <div class="pcoded-inner-content">
+                        <div class="main-body">
+                            <div class="page-wrapper">
+                                <div class="page-body">
+                                    <!-- [ page content ] start -->
+                                    <div class="row">
 
-                                            <!-- site Analytics card start -->
-                                            <div class="col-lg-12 col-md-12">
-                                                <div class="card">
-                                                    <div class="card-header borderless">
-                                                        <h5>Nube de palabras</h5>
-                                                        <span class="text-muted"></span>
-                                                        <div class="card-header-right">
-                                                            <ul class="list-unstyled card-option">
-                                                                <li class="first-opt"><i class="feather icon-chevron-left open-card-option"></i></li>
-                                                                <li><i class="feather icon-maximize full-card"></i></li>
-                                                                <li><i class="feather icon-minus minimize-card"></i></li>
-                                                                <li><i class="feather icon-refresh-cw reload-card"></i></li>
-                                                                <li><i class="feather icon-chevron-left open-card-option"></i></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <div class="card-block">
-
+                                        <!-- site Analytics card start -->
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="card">
+                                                <div class="card-header borderless">
+                                                    <h5>Diagrama de líneas con el total de tweets por hora</h5>
+                                                    <span class="text-muted"></span>
+                                                    <div class="card-header-right">
+                                                        <ul class="list-unstyled card-option">
+                                                            <li class="first-opt"><i class="feather icon-chevron-left open-card-option"></i></li>
+                                                            <li><i class="feather icon-maximize full-card"></i></li>
+                                                            <li><i class="feather icon-minus minimize-card"></i></li>
+                                                            <li><i class="feather icon-chevron-left open-card-option"></i></li>
+                                                        </ul>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <!-- site Analytics card end -->
+                                                <div id="chart" class="c3 card-block">
 
+                                                </div>
+                                            </div>
                                         </div>
-                                        <!-- [ page content ] end -->
+                                        <!-- site Analytics card end -->
+
                                     </div>
+                                    <!-- [ page content ] end -->
                                 </div>
                             </div>
                         </div>
@@ -166,76 +184,52 @@
             </div>
         </div>
     </div>
-    <!-- Warning Section Starts -->
-    <!-- Older IE warning message -->
-    <!--[if lt IE 10]>
-    <div class="ie-warning">
-        <h1>Warning!!</h1>
-        <p>You are using an outdated version of Internet Explorer, please upgrade
-            <br/>to any of the following web browsers to access this website.
-        </p>
-        <div class="iew-container">
-            <ul class="iew-download">
-                <li>
-                    <a href="http://www.google.com/chrome/">
-                        <img src="../files/assets/images/browser/chrome.png" alt="Chrome">
-                        <div>Chrome</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://www.mozilla.org/en-US/firefox/new/">
-                        <img src="../files/assets/images/browser/firefox.png" alt="Firefox">
-                        <div>Firefox</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="http://www.opera.com">
-                        <img src="../files/assets/images/browser/opera.png" alt="Opera">
-                        <div>Opera</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://www.apple.com/safari/">
-                        <img src="../files/assets/images/browser/safari.png" alt="Safari">
-                        <div>Safari</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
-                        <img src="../files/assets/images/browser/ie.png" alt="">
-                        <div>IE (9 & above)</div>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <p>Sorry for the inconvenience!</p>
-    </div>
-<![endif]-->
-    <!-- Warning Section Ends -->
-    <!-- Required Jquery -->
-    <!-- Required Jquery -->
-    <script type="text/javascript" src="{% static 'files/bower_components/jquery/js/jquery.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'files/bower_components/jquery-ui/js/jquery-ui.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'files/bower_components/popper.js/js/popper.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'files/bower_components/bootstrap/js/bootstrap.min.js' %}"></script>
-    <!-- waves js -->
-    <script src="{% static 'files/assets/pages/waves/js/waves.min.js' %}"></script>
-    <!-- jquery slimscroll js -->
-    <script type="text/javascript" src="{% static 'files/bower_components/jquery-slimscroll/js/jquery.slimscroll.js' %}"></script>
-    <!-- Float Chart js -->
-    <script src="{% static 'files/assets/pages/chart/float/jquery.flot.js' %}"></script>
-    <script src="{% static 'files/assets/pages/chart/float/jquery.flot.categories.js' %}"></script>
-    <script src="{% static 'files/assets/pages/chart/float/curvedLines.js' %}"></script>
-    <script src="{% static 'files/assets/pages/chart/float/jquery.flot.tooltip.min.js' %}"></script>
-    <!-- amchart js -->
-    <script src="{% static 'files/assets/pages/widget/amchart/amcharts.js' %}"></script>
-    <script src="{% static 'files/assets/pages/widget/amchart/serial.js' %}"></script>
-    <script src="{% static 'files/assets/pages/widget/amchart/light.js' %}"></script>
-    <!-- Custom js -->
-    <script src="{% static 'files/assets/js/pcoded.min.js' %}"></script>
-    <script src="{% static 'files/assets/js/vertical/vertical-layout.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'files/assets/pages/dashboard/custom-dashboard.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'files/assets/js/script.min.js' %}"></script>
+</div>
+
+<script type="text/javascript" src="{% static 'files/bower_components/jquery/js/jquery.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'files/bower_components/jquery-ui/js/jquery-ui.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'files/bower_components/popper.js/js/popper.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'files/bower_components/bootstrap/js/bootstrap.min.js' %}"></script>
+<!-- waves js -->
+<script src="{% static 'files/assets/pages/waves/js/waves.min.js' %}"></script>
+<!-- jquery slimscroll js -->
+<script type="text/javascript" src="{% static 'files/bower_components/jquery-slimscroll/js/jquery.slimscroll.js' %}"></script>
+<!-- Float Chart js -->
+<script src="{% static 'files/assets/pages/chart/float/jquery.flot.js' %}"></script>
+<script src="{% static 'files/assets/pages/chart/float/jquery.flot.categories.js' %}"></script>
+<script src="{% static 'files/assets/pages/chart/float/curvedLines.js' %}"></script>
+<script src="{% static 'files/assets/pages/chart/float/jquery.flot.tooltip.min.js' %}"></script>
+<!-- amchart js -->
+<script src="{% static 'files/assets/pages/widget/amchart/amcharts.js' %}"></script>
+<script src="{% static 'files/assets/pages/widget/amchart/serial.js' %}"></script>
+<script src="{% static 'files/assets/pages/widget/amchart/light.js' %}"></script>
+<!-- Custom js -->
+<script src="{% static 'files/assets/js/pcoded.min.js' %}"></script>
+<script src="{% static 'files/assets/js/vertical/vertical-layout.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'files/assets/pages/dashboard/custom-dashboard.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'files/assets/js/script.min.js' %}"></script>
+
+<script>
+    d3.json("{% url "lineas_data" %}", function(data) {
+        data = data.tweets;
+        var modData = [];
+        var item = ["#Tweets"];
+        data.forEach(function(d) {
+            item.push(d);
+        });
+        modData.push(item);
+        var chart = c3.generate({
+            size: {
+                height: 400,
+                width: 900
+            },
+            data: {
+                columns: modData
+            },
+
+        });
+    });
+</script>
 </body>
 
 </html>

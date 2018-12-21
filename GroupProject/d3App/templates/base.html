@@ -71,7 +71,6 @@
                                 <img class="img-menu-user img-radius" src="{% static 'files/assets/images/logo.png' %}" alt="User-Profile-Image">
                             </div>
                         </div>
-                        <div class="pcoded-navigation-label">Navigation</div>
                         <ul class="pcoded-item pcoded-left-item">
                             <li class="pcoded-hasmenu">
                                 <a href="javascript:void(0)" class="waves-effect waves-dark">
@@ -80,27 +79,27 @@
                                 </a>
                                 <ul class="pcoded-submenu">
                                     <li class="{% if home %}active{% endif %}">
-                                        <a href="index.html" class="waves-effect waves-dark">
+                                        <a href="{% url 'home' %}" class="waves-effect waves-dark">
                                             <span class="pcoded-mtext">Datasets</span>
                                         </a>
                                     </li>
                                     <li class="{% if barras %}active{% endif %}">
-                                        <a href="index.html" class="waves-effect waves-dark">
+                                        <a href="{% url 'following_er' %}" class="waves-effect waves-dark">
                                             <span class="pcoded-mtext">Barras</span>
                                         </a>
                                     </li>
                                     <li class="{% if lineas %}active{% endif %}">
-                                        <a href="index.html" class="waves-effect waves-dark">
+                                        <a href="{% url 'lineas' %}" class="waves-effect waves-dark">
                                             <span class="pcoded-mtext">Líneas</span>
                                         </a>
                                     </li>
                                     <li class="{% if nube %}active{% endif %}">
-                                        <a href="index.html" class="waves-effect waves-dark">
+                                        <a href="{% url 'nube_palabras' %}" class="waves-effect waves-dark">
                                             <span class="pcoded-mtext">Nube de palabras</span>
                                         </a>
                                     </li>
                                     <li class="{% if burbuja %}active{% endif %}">
-                                        <a href="index.html" class="waves-effect waves-dark">
+                                        <a href="{% url 'burbuja' %}" class="waves-effect waves-dark">
                                             <span class="pcoded-mtext">Burbujas</span>
                                         </a>
                                     </li>

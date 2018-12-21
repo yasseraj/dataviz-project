@@ -31,7 +31,7 @@ class FollowData(models.Model):
     ratio = models.FloatField(null=False, blank=False, default=0.0)
 
     class Meta:
-        ordering = ('-ratio',)
+        ordering = ('-followers',)
 
     def __str__(self):
         return 'nickname: %s, followers: %d, following: %d, Followers/Following ratio: %.4f: ' % (self.nickname, self.followers, self.following, self.ratio)
@@ -46,3 +46,14 @@ class HashCount(models.Model):
 
     def __str__(self):
         return 'Keyword: %s, repeats: %d' % (self.hash, self.repeats)
+
+
+class TimeTweets(models.Model):
+    time = models.TimeField(blank=False, null=False)
+    repeats = models.IntegerField(null=False, blank=False, default=0)
+
+    class Meta:
+        ordering = ('-time',)
+
+    def __str__(self):
+        return 'time: %s, repeats: %d' % (self.time, self.repeats)

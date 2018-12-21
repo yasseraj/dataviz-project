@@ -8,11 +8,13 @@ from django.http import JsonResponse
 
 
 def HomeCtrl(request):
-    sp = SpainPortugal.objects.all()
+    # sp = SpainPortugal.objects.all()
     np = NubePalabras.objects.all()
     f = FollowData.objects.all()
     hc = HashCount.objects.all()
-    return render(request, 'home.html', {'sp': sp, 'np': np, 'f': f, 'hc': hc, 'home': True})
+    th = TimeTweets.objects.all()
+    #return render(request, 'home.html', {'sp': sp, 'np': np, 'f': f, 'hc': hc, 'th': th, 'home': True})
+    return render(request, 'home.html', {'np': np, 'f': f, 'hc': hc, 'th': th, 'home': True})
 
 
 def SpainPortugalCtrl(request):
@@ -30,9 +32,43 @@ def NubeDataCtrl(request):
 
 
 def PaginaFolloIngErCtrl(request):
-    return render(request, 'follow_ing_ers.html')
+    return render(request, 'barras_followers.html')
 
 
 def PaginaFolloIngErDataCtrl(request):
     data = list(FollowData.objects.values())
     return JsonResponse(data, safe=False)
+
+
+def PaginaFolloIngErDataCtrl1(request):
+    data = list(FollowData.objects.values())
+    data = sorted(data, key=lambda k: -k['following'])
+    return JsonResponse(data, safe=False)
+
+
+def PaginaFolloIngErDataCtrl2(request):
+    data = list(FollowData.objects.values())
+    data = sorted(data, key=lambda k: -k['ratio'])
+    return JsonResponse(data, safe=False)
+
+
+def BurbujaCtrl(request):
+    return render(request, 'burbujas.html')
+
+
+def BurbujaDataCtrl(request):
+    data = list(HashCount.objects.values())
+    return JsonResponse(data, safe=False)
+
+
+def LineasCtrl(request):
+    return render(request, 'lineas.html')
+
+
+def LineasDataCtrl(request):
+    data_qs = TimeTweets.objects.all()
+    data = []
+    for d in data_qs:
+        data.append(d.repeats)
+    print(data)
+    return JsonResponse({'tweets': data}, safe=False)
